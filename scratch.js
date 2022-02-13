@@ -22,8 +22,8 @@ let words = [
   ['sat', 'PastTense'],
 ]
 
-// let model = classify(words)
-// console.dir(model, { depth: 5 })
+let model = classify(words)
+console.dir(model, { depth: 5 })
 // console.log(predict('saved', model))
 
 test(words)

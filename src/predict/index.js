@@ -1,16 +1,4 @@
-const getSuffixes = function (str = '') {
-  let list = []
-  for (let i = max; i >= 0; i -= 1) {
-    if (str.length - 1 <= i) {
-      continue
-    }
-    let n = str.length - i - 1
-    let suffix = str.substring(n, n + str.length - 1)
-    list.push(suffix)
-  }
-  return list.reverse()
-}
-
+// apply the model to our string
 const predict = function (str, model) {
   let { rules, exceptions } = model
   if (exceptions.hasOwnProperty(str)) {
