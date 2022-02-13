@@ -66,9 +66,8 @@ const decide = function (allRules) {
     rules = preferShort(rules)
     rules = clearOut(rules)
     rules = sort(rules)
-    console.log(rules)
-    // console.log(arr)
+    allRules[k] = rules
   })
-
+  return allRules
 }
 export default decide

@@ -1,6 +1,8 @@
 import getAll from './01-getAll.js'
-import countWrongs from './02-score.js'
-import decideOn from './03-compact.js'
+import score from './02-score.js'
+import compact from './03-compact.js'
+import fmt from './04-fmt.js'
+
 
 const splitFor = function (val, pairs) {
   let ins = new Set()
@@ -25,14 +27,16 @@ const classify = function (pairs) {
     vals.add(a[1])
   })
   vals = Array.from(vals)
-  let rules = {}
+  let byGroup = {}
   vals.forEach(val => {
     let { ins, outs } = splitFor(val, pairs)
     let inRules = getAll(ins)
-    inRules = countWrongs(inRules, outs)
-    rules[val] = inRules
+    inRules = score(inRules, outs)
+    byGroup[val] = inRules
   })
-  rules = decideOn(rules)
-  return rules
+  // keep only good rules
+  byGroup = compact(byGroup)
+  // console.log(byGroup)
+  return fmt(byGroup, pairs)
 }
 export default classify

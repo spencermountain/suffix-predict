@@ -23,4 +23,4 @@ let words = [
 ]
 
 let model = classify(words)
-console.log(model)
+console.dir(model, { depth: 5 })
