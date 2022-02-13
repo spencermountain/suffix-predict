@@ -1,4 +1,4 @@
-import { classify, predict, compress, uncompress } from './src/index.js'
+import { classify, predict, compress, uncompress, test } from './src/index.js'
 
 let words = [
   ['walking', 'Gerund'],
@@ -22,5 +22,8 @@ let words = [
   ['sat', 'PastTense'],
 ]
 
-let model = classify(words)
-console.dir(model, { depth: 5 })
+// let model = classify(words)
+// console.dir(model, { depth: 5 })
+// console.log(predict('saved', model))
+
+test(words)
