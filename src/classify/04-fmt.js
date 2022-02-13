@@ -22,7 +22,7 @@ const getExceptions = function (rules, pairs) {
   pairs.forEach(a => {
     let [w, tag] = a
     for (let i = 0; i < rules.length; i += 1) {
-      if (w.endsWith(rules[i][0]) && tag !== a[1]) {
+      if (w.endsWith(rules[i][0]) && tag !== rules[i][1]) {
         exceptions[w] = tag
       }
     }

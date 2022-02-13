@@ -4,6 +4,7 @@ import compact from './03-compact.js'
 import fmt from './04-fmt.js'
 
 
+
 const splitFor = function (val, pairs) {
   let ins = new Set()
   let outs = new Set()
@@ -20,8 +21,24 @@ const splitFor = function (val, pairs) {
     outs: Array.from(outs),
   }
 }
+const isObject = val => {
+  return Object.prototype.toString.call(val) === '[object Object]'
+}
+
+const fromObj = function (obj) {
+  let pairs = []
+  Object.keys(obj).forEach(k => {
+    obj[k].forEach(str => {
+      pairs.push([str, k])
+    })
+  })
+  return paris
+}
 
 const classify = function (pairs) {
+  if (isObject(pairs)) {
+    pairs = fromObj(pairs)
+  }
   let vals = new Set()
   pairs.forEach(a => {
     vals.add(a[1])
