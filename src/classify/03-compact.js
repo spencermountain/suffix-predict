@@ -50,24 +50,26 @@ const clearOut = function (rules) {
   rules.forEach((rule, i) => {
     for (let k = i + 1; k < rules.length; k += 1) {
       let smaller = rules[k]
-      // is it a subset, and it's worse?
-      if (smaller.nos > rule.nos) {
-        rules[k].redundant = true
+      if (rules[i].suff.endsWith(smaller.suff)) {
+        // is it a subset, and it's worse?
+        if (smaller.nos > rule.nos) {
+          rules[k].redundant = true
+        }
       }
     }
   })
   return rules.filter(rule => !rule.redundant)
 }
 
-const decide = function (allRules) {
-  Object.keys(allRules).forEach(k => {
-    let rules = allRules[k].filter(o => o.diff > 0)
+const decide = function (byTag) {
+  Object.keys(byTag).forEach(k => {
+    let rules = byTag[k].filter(o => o.diff > 0)
     rules = sortByLength(rules)
     rules = preferShort(rules)
     rules = clearOut(rules)
     rules = sort(rules)
-    allRules[k] = rules
+    byTag[k] = rules
   })
-  return allRules
+  return byTag
 }
 export default decide

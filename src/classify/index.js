@@ -4,8 +4,6 @@ import compact from './03-compact.js'
 import fmt from './04-fmt.js'
 import { init } from '../lib.js'
 
-
-
 const splitFor = function (val, pairs) {
   let ins = new Set()
   let outs = new Set()
@@ -21,19 +19,6 @@ const splitFor = function (val, pairs) {
     ins: Array.from(ins),
     outs: Array.from(outs),
   }
-}
-const isObject = val => {
-  return Object.prototype.toString.call(val) === '[object Object]'
-}
-
-const fromObj = function (obj) {
-  let pairs = []
-  Object.keys(obj).forEach(k => {
-    obj[k].forEach(str => {
-      pairs.push([str, k])
-    })
-  })
-  return pairs
 }
 
 const classify = function (pairs) {
@@ -52,7 +37,6 @@ const classify = function (pairs) {
   })
   // keep only good rules
   byGroup = compact(byGroup)
-  // console.log(byGroup)
   return fmt(byGroup, pairs)
 }
 export default classify
