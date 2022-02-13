@@ -2,6 +2,7 @@ import getAll from './01-getAll.js'
 import score from './02-score.js'
 import compact from './03-compact.js'
 import fmt from './04-fmt.js'
+import { init } from '../lib.js'
 
 
 
@@ -32,13 +33,11 @@ const fromObj = function (obj) {
       pairs.push([str, k])
     })
   })
-  return paris
+  return pairs
 }
 
 const classify = function (pairs) {
-  if (isObject(pairs)) {
-    pairs = fromObj(pairs)
-  }
+  pairs = init(pairs)
   let vals = new Set()
   pairs.forEach(a => {
     vals.add(a[1])
