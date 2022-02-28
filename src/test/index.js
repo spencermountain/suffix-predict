@@ -1,5 +1,5 @@
 import predict from '../predict/index.js'
-import classify from '../classify/index.js'
+import classify from '../getRules/index.js'
 import { init } from '../lib.js'
 
 const countRules = function (rules) {

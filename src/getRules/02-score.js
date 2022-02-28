@@ -4,6 +4,8 @@ const percent = (part, total) => {
   return num;
 };
 
+const round = n => Math.round(n * 10) / 10
+
 const getWrongs = function (rules, outs) {
   rules = rules.map(a => {
     let [suff, yes, per] = a
@@ -12,10 +14,10 @@ const getWrongs = function (rules, outs) {
     return {
       suff,
       yes,
-      // strength,
       nos,
-      // outp,
-      diff: per - outp
+      per,
+      outp,
+      diff: round(per - outp)
     }
   })
   return rules.sort((a, b) => {

@@ -9,7 +9,18 @@ const validate = (arr) => {
 }
 
 
-const classify = function (list, rest) {
+const unwrap = function (byTag, want) {
+  let rest = []
+  Object.keys(byTag).forEach(tag => {
+    if (tag !== want) {
+      rest = rest.concat(byTag[tag])
+    }
+  })
+  return { list: byTag[want], rest }
+}
+
+const classify = function (byTag, tag) {
+  let { list, rest } = unwrap(byTag, tag)
   list = validate(list)
   rest = validate(rest)
   let inRules = getAll(list)
@@ -20,6 +31,6 @@ const classify = function (list, rest) {
   // keep only good rules
   rules = compact(rules)
   return rules
-  // return fmt(byGroup, pairs)
+  // return fmt(rules, byTag, tag)
 }
 export default classify

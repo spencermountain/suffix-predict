@@ -1,4 +1,4 @@
-const max = 6
+const max = 7
 
 const getSuffixes = function (str = '') {
   let list = []
