@@ -63,9 +63,9 @@ const clearOut = function (rules) {
 
 const decide = function (rules) {
   rules = rules.filter(o => o.diff > 1 && o.yes > 2)
-  rules = sortByLength(rules)
-  rules = preferShort(rules)
-  rules = clearOut(rules)
+  // rules = sortByLength(rules)
+  // rules = preferShort(rules)
+  // rules = clearOut(rules)
   rules = sort(rules)
   return rules
 }

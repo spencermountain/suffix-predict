@@ -1,20 +1,24 @@
 const top = 1000
 
-const getExceptions = function (rules, byTag, tag) {
+const getExceptions = function (suff, byTag, tag) {
   let exceptions = {}
-  rules.forEach(r => {
-    Object.keys(byTag).forEach(k => {
-      if (k === tag) {
-        return
+  Object.keys(byTag).forEach(k => {
+    if (k === tag) {
+      return
+    }
+    let words = byTag[k].slice(0, top)
+    words.forEach(w => {
+      if (w.endsWith(suff)) {
+        exceptions[w] = k
       }
-      let words = byTag[k].slice(0, top)
-      words.forEach(w => {
-        if (w.endsWith(r.suff)) {
-          exceptions[w] = k
-        }
-      })
     })
   })
-  return exceptions
+
+  let out = {}
+  Object.entries(exceptions).forEach(a => {
+    out[a[1]] = out[a[1]] || []
+    out[a[1]].push(a[0])
+  })
+  return out
 }
 export default getExceptions

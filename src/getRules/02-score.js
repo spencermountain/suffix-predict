@@ -21,9 +21,9 @@ const getWrongs = function (rules, outs) {
     }
   })
   return rules.sort((a, b) => {
-    if (a.diff > b.diff) {
+    if (a.yes > b.yes) {
       return -1
-    } else if (a.diff < b.diff) {
+    } else if (a.yes < b.yes) {
       return 1
     }
     return 0

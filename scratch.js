@@ -7,18 +7,22 @@ import vb from '/Users/spencer/mountain/fr-compromise/learn/giga/results/Verb.js
 
 
 let byTag = {
-  jj: jj.slice(0, 5000),
-  rb: rb.slice(0, 5000),
-  nn: nn.slice(0, 5000),
-  vb: vb.slice(0, 5000)
+  jj: jj.slice(0, 7000),
+  rb: rb.slice(0, 7000),
+  nn: nn.slice(0, 7000),
+  vb: vb.slice(0, 7000)
 }
 
-let want = 'vb'
-let rules = getRules(byTag, want)
+
+
+let want = 'nn'
+// let rules = getRules(byTag, want)
 // rules = rules.slice(0, 1)
-console.dir(rules, { depth: 5 })
-// const exceptions = getExceptions(rules, byTag, want)
-// console.log(exceptions)
+// console.dir(rules, { depth: 5 })
+
+
+const exceptions = getExceptions('té', byTag)
+console.log(exceptions)
 // console.log(compress(model))
 
 // console.log('\n\n', predict('identify', model))
