@@ -5,18 +5,26 @@ const percent = (part, total) => {
 };
 
 const getWrongs = function (rules, outs) {
-  return rules.map(a => {
-    let [suff, yes, strength] = a
+  rules = rules.map(a => {
+    let [suff, yes, per] = a
     let nos = outs.filter(str => str.endsWith(suff)).length
-    // let outp = percent(outs, outs.length)
+    let outp = percent(nos, outs.length)
     return {
       suff,
       yes,
       // strength,
       nos,
       // outp,
-      diff: yes - nos
+      diff: per - outp
     }
+  })
+  return rules.sort((a, b) => {
+    if (a.diff > b.diff) {
+      return -1
+    } else if (a.diff < b.diff) {
+      return 1
+    }
+    return 0
   })
 }
 export default getWrongs

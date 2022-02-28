@@ -61,15 +61,12 @@ const clearOut = function (rules) {
   return rules.filter(rule => !rule.redundant)
 }
 
-const decide = function (byTag) {
-  Object.keys(byTag).forEach(k => {
-    let rules = byTag[k].filter(o => o.diff > 0)
-    rules = sortByLength(rules)
-    rules = preferShort(rules)
-    rules = clearOut(rules)
-    rules = sort(rules)
-    byTag[k] = rules
-  })
-  return byTag
+const decide = function (rules) {
+  rules = rules.filter(o => o.diff > 0 && o.yes > 2)
+  rules = sortByLength(rules)
+  rules = preferShort(rules)
+  rules = clearOut(rules)
+  rules = sort(rules)
+  return rules
 }
 export default decide
