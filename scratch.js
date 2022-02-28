@@ -21,7 +21,7 @@ let want = 'nn'
 // console.dir(rules, { depth: 5 })
 
 
-const exceptions = getExceptions('té', byTag)
+const exceptions = getExceptions('tant', byTag)
 console.log(exceptions)
 // console.log(compress(model))
 

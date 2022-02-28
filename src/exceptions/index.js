@@ -1,4 +1,4 @@
-const top = 1000
+const top = 7000
 
 const getExceptions = function (suff, byTag, tag) {
   let exceptions = {}
