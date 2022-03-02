@@ -20,24 +20,26 @@ const sort = function (arr) {
 const sortByLength = function (arr) {
   return arr.sort((a, b) => {
     if (a.suff.length > b.suff.length) {
-      return -1
-    } else if (a.suff.length < b.suff.length) {
       return 1
+    } else if (a.suff.length < b.suff.length) {
+      return -1
     }
     return 0
   })
 }
 
-// are there shorter rules that are just as good?
-const preferShort = function (rules) {
+// are there longer rules that are mostly just as good?
+const preferLong = function (rules) {
   rules = rules.filter((rule, i) => {
     for (let k = i + 1; k < rules.length; k += 1) {
-      let smaller = rules[k]
-      if (rules[i].suff.endsWith(smaller.suff)) {
-        // we have found a rule that is smaller
-        // is it just as good?
-        if (smaller.diff >= rule.diff) {
-          return false
+      let safer = rules[k]
+      if (safer.suff.endsWith(rules[i].suff)) {
+        let diff = rule.yes - safer.yes
+        let drop = Math.round((diff / rule.yes) * 100)
+        // is this longer version within 30% of the short one?
+        if (drop < 30) {
+          // console.log(rule.suff, ' -> ', safer.suff, drop + '% ')
+          return false //remove the short one
         }
       }
     }
@@ -46,26 +48,11 @@ const preferShort = function (rules) {
   return rules
 }
 
-const clearOut = function (rules) {
-  rules.forEach((rule, i) => {
-    for (let k = i + 1; k < rules.length; k += 1) {
-      let smaller = rules[k]
-      if (rules[i].suff.endsWith(smaller.suff)) {
-        // is it a subset, and it's worse?
-        if (smaller.nos > rule.nos) {
-          rules[k].redundant = true
-        }
-      }
-    }
-  })
-  return rules.filter(rule => !rule.redundant)
-}
 
 const decide = function (rules) {
-  rules = rules.filter(o => o.diff > 1 && o.yes > 2)
-  // rules = sortByLength(rules)
-  // rules = preferShort(rules)
-  // rules = clearOut(rules)
+  rules = rules.filter(o => o.diff > 1.1 && o.yes > 5 && o.yes > o.nos)
+  rules = sortByLength(rules)
+  rules = preferLong(rules)
   rules = sort(rules)
   return rules
 }

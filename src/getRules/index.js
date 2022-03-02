@@ -2,7 +2,9 @@ import getAll from './01-getAll.js'
 import score from './02-score.js'
 import compact from './03-compact.js'
 import fmt from './04-fmt.js'
-import { init } from '../lib.js'
+// import { init } from '../lib.js'
+import post from './05-post.js'
+
 
 const validate = (arr) => {
   return arr.filter(str => str)
@@ -33,4 +35,21 @@ const classify = function (byTag, tag) {
   return rules
   // return fmt(rules, byTag, tag)
 }
-export default classify
+
+const doAll = function (byTag, tag) {
+  // do just one
+  if (tag) {
+    return classify(byTag, tag)
+  }
+  // do them all
+  let all = {}
+  Object.keys(byTag).forEach(k => {
+    all[k] = classify(byTag, k)
+  })
+  console.log(all)
+  // cleanup any overlaps
+  all = post(all)
+  return all
+
+}
+export default doAll

@@ -1,9 +1,9 @@
-import { getRules, getExceptions } from './src/index.js'
+import { getRules, getExceptions, combine } from './src/index.js'
 
-import rb from '/Users/spencer/mountain/fr-compromise/learn/giga/results/Adverb.js'
-import jj from '/Users/spencer/mountain/fr-compromise/learn/giga/results/Adjective.js'
-import nn from '/Users/spencer/mountain/fr-compromise/learn/giga/results/Noun.js'
-import vb from '/Users/spencer/mountain/fr-compromise/learn/giga/results/Verb.js'
+import rb from '/Users/spencer/mountain/de-compromise/learn/dictionary/results/Adverb.js'
+import jj from '/Users/spencer/mountain/de-compromise/learn/dictionary/results/Adjective.js'
+import nn from '/Users/spencer/mountain/de-compromise/learn/dictionary/results/Noun.js'
+import vb from '/Users/spencer/mountain/de-compromise/learn/dictionary/results/Verb.js'
 
 
 let byTag = {
@@ -13,16 +13,16 @@ let byTag = {
   vb: vb.slice(0, 7000)
 }
 
+let all = getRules(byTag)
+
+console.log(combine(all))
 
 
-let want = 'nn'
-// let rules = getRules(byTag, want)
-// rules = rules.slice(0, 1)
-// console.dir(rules, { depth: 5 })
 
 
-const exceptions = getExceptions('tant', byTag)
-console.log(exceptions)
+
+// const exceptions = getExceptions('tant', byTag)
+// console.log(exceptions)
 // console.log(compress(model))
 
 // console.log('\n\n', predict('identify', model))
